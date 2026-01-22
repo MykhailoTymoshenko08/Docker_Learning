@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  backend:
+    build:  ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./not_db:/app  # Монтуємо код для розробки
+      - chroma_data:/app/db_storage  # Том для ChromaDB
+    environment:
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+    env_file:
+      - ./backend/.env
+
+  frontend:
+    build:  ./frontend
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+    environment:
+      - BACKEND_URL=http://backend:8000
+
+volumes:
+  chroma_data:  # Оголошуємо том
