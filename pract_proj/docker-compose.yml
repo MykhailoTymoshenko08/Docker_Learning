@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - FLASK_ENV=development
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  database:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: myapp
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+
+
+
+
+      
