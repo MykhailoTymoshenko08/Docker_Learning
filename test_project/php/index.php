@@ -68,24 +68,6 @@
 //         ];
 //     }
     
-//     public function addGradeWithTeacher(string $subject, int $grade, string $date, Teacher $teacher): void {
-//         $this->grades[] = [
-//             'subject' => $subject,
-//             'grade' => $grade,
-//             'date' => $date,
-//             'teacher' => $teacher->getName()
-//         ];
-//     }
     
-//     public function getAverageGrade(): float {
-//         if (empty($this->grades)) return 0;
-        
-//         $sum = 0;
-//         foreach ($this->grades as $grade) {
-//             $sum += $grade['grade'];
-//         }
-//         return round($sum / count($this->grades), 2);
-//     }
-    
-    
+
 
